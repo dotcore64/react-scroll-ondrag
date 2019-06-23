@@ -10,7 +10,7 @@
 
 ## Live demo
 
-You can see the simplest demo here: [Live demo](https://codesandbox.io/s/6w5vx7yvwk)
+You can see the simplest demo here: [Live demo](https://codesandbox.io/s/react-scroll-ondrag-demo-v001-2dhu1)
 
 ## Install
 
