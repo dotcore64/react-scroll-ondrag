@@ -1,0 +1,32 @@
+{
+  "name": "react-stay-scrolled-examples",
+  "version": "0.0.1",
+  "description": "Live examples of react-stay-scrolled in action",
+  "main": "src/main.jsx",
+  "scripts": {
+    "start": "rollup -c",
+    "develop": "rollup --watch -c"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
+    "@babel/preset-react": "^7.0.0",
+    "rollup": "^1.4.0",
+    "rollup-plugin-babel": "^4.3.2",
+    "rollup-plugin-commonjs": "^9.2.1",
+    "rollup-plugin-livereload": "^1.0.1",
+    "rollup-plugin-node-builtins": "^2.1.2",
+    "rollup-plugin-node-globals": "^1.4.0",
+    "rollup-plugin-node-resolve": "^4.0.1",
+    "rollup-plugin-replace": "^2.1.0",
+    "rollup-plugin-serve": "^1.0.1"
+  },
+  "dependencies": {
+    "react": "file:../node_modules/react",
+    "react-dom": "file:../node_modules/react-dom",
+    "react-scroll-ondrag": "file:..",
+    "styled-components": "^4.3.2"
+  }
+}
