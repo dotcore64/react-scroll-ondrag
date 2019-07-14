@@ -1,6 +1,7 @@
 import React, { StrictMode, useRef } from 'react';
 import ReactDOM from 'react-dom';
 import { Simulate, act } from 'react-dom/test-utils';
+import { spy } from 'sinon';
 import styled from 'styled-components';
 
 import { expect } from 'chai';
@@ -29,9 +30,9 @@ const Box = styled.div`
 `;
 
 describe('react-stay-scrolled', () => {
-  const TestComponent = () => {
+  const TestComponent = (props) => {
     const containerRef = useRef(null);
-    const { events } = useScrollOnDrag(containerRef);
+    const { events } = useScrollOnDrag(containerRef, props);
 
     return (
       <Container {...events} ref={containerRef}>
@@ -85,6 +86,41 @@ describe('react-stay-scrolled', () => {
       }));
 
       expect(container.scrollLeft).to.equal(50);
+    });
+  });
+
+  describe('event handlers', () => {
+    it('should call onDragStart and onDragEnd appropriately', () => {
+      const onDragStart = spy();
+      const onDragEnd = spy();
+
+      render(<TestComponent onDragStart={onDragStart} onDragEnd={onDragEnd} />, root);
+
+      const container = root.firstChild;
+
+      Simulate.mouseDown(container, {
+        clientX: 100,
+        clientY: 100,
+      });
+
+      expect(onDragEnd).to.not.have.been.called();
+      expect(onDragStart).to.not.have.been.called();
+
+      window.dispatchEvent(new MouseEvent('mousemove', {
+        clientX: 50,
+        clientY: 100,
+      }));
+
+      expect(onDragEnd).to.not.have.been.called();
+      expect(onDragStart).to.have.been.calledOnce();
+
+      window.dispatchEvent(new MouseEvent('mouseup', {
+        clientX: 50,
+        clientY: 100,
+      }));
+
+      expect(onDragStart).to.have.been.calledOnce();
+      expect(onDragEnd).to.have.been.calledOnce();
     });
   });
 });

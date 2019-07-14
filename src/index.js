@@ -1,15 +1,18 @@
 import { useEffect, useRef, useCallback } from 'react';
 import invariant from 'tiny-invariant';
 
-export const maxHorizontalScroll = dom => dom.scrollWidth - dom.clientWidth;
+const maxHorizontalScroll = dom => dom.scrollWidth - dom.clientWidth;
 
 export default (domRef, {
   // eslint-disable-next-line no-param-reassign
   runScroll = (offset) => { domRef.current.scrollLeft = offset; },
+  onDragStart = () => {},
+  onDragEnd = () => {},
 } = {}) => {
   const internalState = useRef({
     lastMousePosition: null,
     isMouseDown: false,
+    isScrolling: false,
   });
 
   const scroll = useCallback((position) => {
@@ -28,11 +31,19 @@ export default (domRef, {
   const onMouseUp = () => {
     internalState.current.isMouseDown = false;
     internalState.current.lastMousePosition = null;
+    internalState.current.isScrolling = false;
+
+    onDragEnd();
   };
 
   const onMouseMove = (e) => {
     if (!internalState.current.isMouseDown) {
       return;
+    }
+
+    if (!internalState.current.isScrolling) {
+      internalState.current.isScrolling = true;
+      onDragStart();
     }
 
     // diff is negative because we want to scroll in the opposite direction of the movement
