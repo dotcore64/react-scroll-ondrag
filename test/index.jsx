@@ -122,5 +122,36 @@ describe('react-stay-scrolled', () => {
       expect(onDragStart).to.have.been.calledOnce();
       expect(onDragEnd).to.have.been.calledOnce();
     });
+
+    it('should not call onDragStart or onDragEnd when clicking outside the component', () => {
+      const onDragStart = spy();
+      const onDragEnd = spy();
+
+      render(<TestComponent onDragStart={onDragStart} onDragEnd={onDragEnd} />, root);
+
+      document.body.dispatchEvent(new MouseEvent('mousedown', {
+        clientX: 50,
+        clientY: 600,
+      }));
+
+      expect(onDragEnd).to.not.have.been.called();
+      expect(onDragStart).to.not.have.been.called();
+
+      window.dispatchEvent(new MouseEvent('mousemove', {
+        clientX: 50,
+        clientY: 500,
+      }));
+
+      expect(onDragEnd).to.not.have.been.called();
+      expect(onDragStart).to.not.have.been.called();
+
+      window.dispatchEvent(new MouseEvent('mouseup', {
+        clientX: 50,
+        clientY: 500,
+      }));
+
+      expect(onDragStart).to.not.have.been.called();
+      expect(onDragEnd).to.not.have.been.called();
+    });
   });
 });
