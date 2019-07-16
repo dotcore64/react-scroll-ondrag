@@ -50,6 +50,22 @@ Type: a React `ref`, required
 
 A `ref` to the DOM element whose scroll position you want to control
 
+### options
+
+Type: `object`
+
+#### options.onDragStart
+
+Type: `function: () => void`
+
+Called when scrolling by dragging starts
+
+#### options.onDragEnd
+
+Type: `function: () => void`
+
+Called when scrolling by dragging ends
+
 ## Return value
 
 Type: `object`, shape: `{ events: { onMouseDown } }`
