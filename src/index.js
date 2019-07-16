@@ -31,9 +31,11 @@ export default (domRef, {
   const onMouseUp = () => {
     internalState.current.isMouseDown = false;
     internalState.current.lastMousePosition = null;
-    internalState.current.isScrolling = false;
 
-    onDragEnd();
+    if (internalState.current.isScrolling) {
+      internalState.current.isScrolling = false;
+      onDragEnd();
+    }
   };
 
   const onMouseMove = (e) => {
