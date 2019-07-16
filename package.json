@@ -1,6 +1,6 @@
 {
   "name": "react-scroll-ondrag",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "React library for scrolling elements by dragging the mouse",
   "main": "dist/react-scroll-ondrag.cjs.js",
   "module": "dist/react-scroll-ondrag.esm.js",
