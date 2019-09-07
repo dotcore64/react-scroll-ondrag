@@ -54,6 +54,27 @@ A `ref` to the DOM element whose scroll position you want to control
 
 Type: `object`
 
+#### options.runScroll
+
+Type: `function: ({ dx: Integer, dy: Integer }) => void`
+Default:
+
+```javascript
+// ref is the first argument to the hook, documented above
+({ dx, dy }) => {
+  const maxHorizontalScroll = dom => dom.scrollWidth - dom.clientWidth;
+  const maxVerticalScroll = dom => dom.scrollHeight - dom.clientHeight;
+
+  const offsetX = Math.min(maxHorizontalScroll(ref.current), ref.current.scrollLeft + dx);
+  ref.current.scrollLeft = offsetX; // eslint-disable-line no-param-reassign
+
+  const offsetY = Math.min(maxVerticalScroll(ref.current), ref.current.scrollTop + dy);
+  ref.current.scrollTop = offsetY; // eslint-disable-line no-param-reassign
+}
+```
+
+Used to customize scroll, i.e., scroll only in horizontal direction, change scroll speed, etc
+
 #### options.onDragStart
 
 Type: `function: () => void`
