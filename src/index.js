@@ -1,8 +1,8 @@
 import { useEffect, useRef, useCallback } from 'react';
 import invariant from 'tiny-invariant';
 
-const maxHorizontalScroll = dom => dom.scrollWidth - dom.clientWidth;
-const maxVerticalScroll = dom => dom.scrollHeight - dom.clientHeight;
+const maxHorizontalScroll = (dom) => dom.scrollWidth - dom.clientWidth;
+const maxVerticalScroll = (dom) => dom.scrollHeight - dom.clientHeight;
 
 export default (domRef, {
   onDragStart = () => {},

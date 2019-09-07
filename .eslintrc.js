@@ -1,7 +1,9 @@
 module.exports = {
   extends: 'airbnb',
+  parser: 'babel-eslint',
   env: {
-    browser: true
+    browser: true,
+    mocha: true,
   },
   rules: {
     'max-len': ['error', { code: 100, ignoreComments: true }],

@@ -35,8 +35,9 @@ describe('react-stay-scrolled', () => {
     const { events } = useScrollOnDrag(containerRef, props);
 
     return (
-      <Container {...events} ref={containerRef}>
-        {[...Array(30).keys()].map(i => <Box key={i} />)}
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      <Container ref={containerRef} {...events}>
+        {[...Array(30).keys()].map((i) => <Box key={i} />)}
       </Container>
     );
   };
