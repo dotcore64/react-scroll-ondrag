@@ -20,7 +20,7 @@ const Box = styled.div`
   height: 300px;
   margin: 5px 10px;
   width: 250px;
-  background-color: #F00;
+  background: linear-gradient(red, yellow);
 `;
 
 const ScrollableBox = ({ runScroll }) => {
