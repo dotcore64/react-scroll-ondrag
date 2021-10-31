@@ -97,8 +97,8 @@ An object with the events to inject to the controlled element.
 
 See the [LICENSE](LICENSE.md) file for license rights and limitations (MIT).
 
-[build-badge]: https://img.shields.io/travis/perrin4869/react-scroll-ondrag/master.svg?style=flat-square
-[build]: https://travis-ci.org/perrin4869/react-scroll-ondrag
+[build-badge]: https://img.shields.io/github/workflow/status/dotcore64/react-scroll-ondrag/test/master?style=flat-square
+[build]: https://github.com/dotcore64/react-scroll-ondrag/actions
 
 [npm-badge]: https://img.shields.io/npm/v/react-scroll-ondrag.svg?style=flat-square
 [npm]: https://www.npmjs.org/package/react-scroll-ondrag

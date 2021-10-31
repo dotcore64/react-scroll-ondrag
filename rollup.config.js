@@ -1,18 +1,18 @@
-import babel from 'rollup-plugin-babel';
-import resolve from 'rollup-plugin-node-resolve';
-import commonjs from 'rollup-plugin-commonjs';
+import babel from '@rollup/plugin-babel';
+import resolve from '@rollup/plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
 import { terser } from 'rollup-plugin-terser';
 
 import pkg from './package.json';
 
 const input = 'src/index.js';
 const plugins = [
-  babel({ exclude: '**/node_modules/**' }),
+  babel({ exclude: '**/node_modules/**', babelHelpers: 'bundled' }),
 ];
 
 const name = 'ReactDragOnScroll';
 const globals = { react: 'React' };
-const external = id => !id.startsWith('.') && !id.startsWith('/');
+const external = (id) => !id.startsWith('.') && !id.startsWith('/');
 
 export default [{
   external,

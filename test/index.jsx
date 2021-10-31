@@ -1,4 +1,4 @@
-import React, { StrictMode, useRef } from 'react';
+import { StrictMode, useRef } from 'react';
 import ReactDOM from 'react-dom';
 import { Simulate, act } from 'react-dom/test-utils';
 import { spy } from 'sinon';

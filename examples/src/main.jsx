@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import PropTypes from 'prop-types';
 import { render } from 'react-dom';
 import useScrollOnDrag from 'react-scroll-ondrag';
