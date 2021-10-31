@@ -31,7 +31,7 @@ $ npm start
 ## Usage
 
 ```javascript
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import useScrollOnDrag from 'react-scroll-ondrag';
 
 const App = () => {
