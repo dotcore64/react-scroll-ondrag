@@ -103,11 +103,11 @@ See the [LICENSE](LICENSE.md) file for license rights and limitations (MIT).
 [npm-badge]: https://img.shields.io/npm/v/react-scroll-ondrag.svg?style=flat-square
 [npm]: https://www.npmjs.org/package/react-scroll-ondrag
 
-[coveralls-badge]: https://img.shields.io/coveralls/perrin4869/react-scroll-ondrag/master.svg?style=flat-square
-[coveralls]: https://coveralls.io/r/perrin4869/react-scroll-ondrag
+[coveralls-badge]: https://img.shields.io/coveralls/dotcore64/react-scroll-ondrag/master.svg?style=flat-square
+[coveralls]: https://coveralls.io/r/dotcore64/react-scroll-ondrag
 
-[dependency-status-badge]: https://david-dm.org/perrin4869/react-scroll-ondrag.svg?style=flat-square
-[dependency-status]: https://david-dm.org/perrin4869/react-scroll-ondrag
+[dependency-status-badge]: https://david-dm.org/dotcore64/react-scroll-ondrag.svg?style=flat-square
+[dependency-status]: https://david-dm.org/dotcore64/react-scroll-ondrag
 
-[dev-dependency-status-badge]: https://david-dm.org/perrin4869/react-scroll-ondrag/dev-status.svg?style=flat-square
-[dev-dependency-status]: https://david-dm.org/perrin4869/react-scroll-ondrag#info=devDependencies
+[dev-dependency-status-badge]: https://david-dm.org/dotcore64/react-scroll-ondrag/dev-status.svg?style=flat-square
+[dev-dependency-status]: https://david-dm.org/dotcore64/react-scroll-ondrag#info=devDependencies

@@ -16,7 +16,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/perrin4869/react-scroll-ondrag.git"
+    "url": "git+https://github.com/dotcore64/react-scroll-ondrag.git"
   },
   "keywords": [
     "react",
@@ -28,9 +28,9 @@
   "author": "Julian Grinblat <julian@dotcore.co.il>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/perrin4869/react-scroll-ondrag/issues"
+    "url": "https://github.com/dotcore64/react-scroll-ondrag/issues"
   },
-  "homepage": "https://github.com/perrin4869/react-scroll-ondrag#readme",
+  "homepage": "https://github.com/dotcore64/react-scroll-ondrag#readme",
   "peerDependencies": {
     "react": ">=16.8.0"
   },
