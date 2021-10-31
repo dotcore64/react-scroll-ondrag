@@ -1,14 +1,16 @@
-module.exports = api => ({
+module.exports = ({ env }) => ({
   presets: [
-    (api.env() !== 'test') ? '@babel/env' : ['@babel/env', {
-      targets: {
-        browsers: ['chrome >= 60', 'firefox >= 56'], // Test in these browsers is enough
-      },
+    ['@babel/env', {
+      ...(env('test') ? {
+        targets: {
+          browsers: ['chrome >= 60', 'firefox >= 56'], // Test in these browsers is enough
+        }
+      } : {}),
     }],
-    '@babel/react',
-  ],
+    env('test') && ['@babel/react', { runtime: 'automatic' }],
+  ].filter(Boolean),
   plugins: [
     'dev-expression',
-    api.env() === 'test' && ['istanbul', { exclude: ['test/*.jsx'] }],
+    env('test') && ['istanbul', { exclude: ['test/**'] }],
   ].filter(Boolean),
 });

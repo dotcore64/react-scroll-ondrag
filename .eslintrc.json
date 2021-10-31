@@ -1,10 +1,18 @@
 {
+  "extends": ["airbnb", "plugin:react/jsx-runtime"],
   "env": {
-    "mocha": true,
     "browser": true
   },
   "rules": {
-    "import/no-extraneous-dependencies": [2, {"devDependencies": true}]
+    "max-len": ["error", { "code": 100, "ignoreComments": true }],
+    "import/no-extraneous-dependencies": ["error", {
+      "devDependencies": [
+        "test/**",
+        "karma.conf.js",
+        "rollup.config.js",
+        "examples/rollup.config.js"
+      ]
+    }]
   },
   "overrides": [
     {

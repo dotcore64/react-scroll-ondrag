@@ -1,9 +1,7 @@
-import babel from 'rollup-plugin-babel';
-import resolve from 'rollup-plugin-node-resolve';
-import commonjs from 'rollup-plugin-commonjs';
-import globals from 'rollup-plugin-node-globals';
-import builtins from 'rollup-plugin-node-builtins';
-import replace from 'rollup-plugin-replace';
+import babel from '@rollup/plugin-babel';
+import resolve from '@rollup/plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
+import replace from '@rollup/plugin-replace';
 import serve from 'rollup-plugin-serve';
 import livereload from 'rollup-plugin-livereload';
 
@@ -20,38 +18,14 @@ export default {
       babelrc: false,
       presets: [
         '@babel/env',
-        '@babel/react',
+        ['@babel/react', { runtime: 'automatic' }],
       ],
+      babelHelpers: 'bundled',
     }),
     resolve({
       extensions: ['.js', '.jsx'],
     }),
-    commonjs({
-      include: ['node_modules/**', '../node_modules/**'],
-      namedExports: {
-        '../node_modules/react/index.js': [
-          'createElement',
-          'useCallback',
-          'useEffect',
-          'useRef',
-          // styled-components
-          'cloneElement',
-          'createContext',
-          'Component',
-        ],
-        '../node_modules/react-dom/index.js': [
-          'render',
-        ],
-        'node_modules/react-is/index.js': [
-          // styled-components
-          'isElement',
-          'isValidElementType',
-          'ForwardRef',
-        ],
-      },
-    }),
-    globals(), // needed by styled-components stream
-    builtins(), // needed by styled-components stream
+    commonjs({ include: ['node_modules/**', '../node_modules/**'] }),
     serve({
       contentBase: 'public',
       port: process.env.PORT || 3000,
