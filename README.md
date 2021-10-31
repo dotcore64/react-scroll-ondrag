@@ -23,8 +23,9 @@ $ npm install --save react-scroll-ondrag
 Run examples:
 
 ```bash
+$ npm ci
 $ cd examples
-$ npm install
+$ npm ci
 $ npm start
 ```
 
