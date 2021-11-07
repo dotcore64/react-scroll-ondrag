@@ -1,9 +1,7 @@
-import babel from '@rollup/plugin-babel';
+import { babel } from '@rollup/plugin-babel';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import { terser } from 'rollup-plugin-terser';
-
-import pkg from './package.json';
 
 const input = 'src/index.js';
 const plugins = [
@@ -17,18 +15,16 @@ const external = (id) => !id.startsWith('.') && !id.startsWith('/');
 export default [{
   external,
   input,
-  output: { file: `dist/${pkg.name}.cjs.js`, format: 'cjs', exports: 'named' },
-  plugins,
-}, {
-  external,
-  input,
-  output: { file: `dist/${pkg.name}.esm.js`, format: 'esm' },
+  output: [
+    { file: 'dist/index.cjs', format: 'cjs', exports: 'named' },
+    { file: 'dist/index.js', format: 'esm' },
+  ],
   plugins,
 }, {
   external: Object.keys(globals),
   input,
   output: {
-    file: `dist/${pkg.name}.umd.js`, format: 'umd', globals, name, exports: 'named',
+    file: 'dist/index.umd.js', format: 'umd', globals, name, exports: 'named',
   },
   plugins: [
     ...plugins,
