@@ -5,6 +5,7 @@
   },
   "rules": {
     "max-len": ["error", { "code": 100, "ignoreComments": true }],
+    "react/function-component-definition": [2, {"namedComponents":"arrow-function"}],
     "import/no-extraneous-dependencies": ["error", {
       "devDependencies": [
         "test/**",

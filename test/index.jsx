@@ -44,11 +44,14 @@ describe('react-stay-scrolled', () => {
 
   function render(element, container, cb = noop) {
     act(() => {
-      ReactDOM.render((
-        <StrictMode>
-          {element}
-        </StrictMode>
-      ), container, cb);
+      ReactDOM.render(
+        (
+          <StrictMode>
+            {element}
+          </StrictMode>
+        ), container,
+        cb,
+      );
     });
   }
 
