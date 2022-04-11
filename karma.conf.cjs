@@ -5,6 +5,7 @@
 
 process.env.NODE_ENV = 'test';
 if (!process.env.CHROME_BIN) process.env.CHROME_BIN = require('puppeteer').executablePath();
+const IS_REACT_18 = parseInt(require('react').version.split('.')[0], 10) >= 18;
 
 module.exports = (config) => {
   const configuration = {
@@ -66,11 +67,14 @@ module.exports = (config) => {
           exclude: 'node_modules/**',
           babelHelpers: 'bundled',
         }),
+        !IS_REACT_18 && require('@rollup/plugin-alias')({
+          entries: { 'react-dom/client': './test/react-dom-client-polyfill.js' },
+        }),
         require('@rollup/plugin-node-resolve').default({
           mainFields: ['module', 'browser', 'main'],
         }),
         require('@rollup/plugin-commonjs')({ include: 'node_modules/**' }),
-      ],
+      ].filter(Boolean),
       output: {
         format: 'iife',
         sourcemap: 'inline',
