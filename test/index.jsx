@@ -1,14 +1,16 @@
 import { StrictMode, useRef } from 'react';
-import ReactDOM from 'react-dom';
+import { render as reactDomRender } from 'react-dom';
+import { createRoot } from 'react-dom/client'; // eslint-disable-line import/no-unresolved
 import { Simulate, act } from 'react-dom/test-utils';
+import { expect } from 'chai';
 import { spy } from 'sinon';
 import styled from 'styled-components';
 
-import { expect } from 'chai';
+// https://github.com/import-js/eslint-plugin-import/issues/1649
+// eslint-disable-next-line import/no-unresolved
+import useScrollOnDrag from 'react-scroll-ondrag';
 
-import useScrollOnDrag from '../src';
-
-const noop = () => {};
+globalThis.IS_REACT_ACT_ENVIRONMENT = true;
 
 const Container = styled.div`
   display: inline-block;
@@ -42,20 +44,26 @@ describe('react-stay-scrolled', () => {
     );
   };
 
-  function render(element, container, cb = noop) {
-    act(() => {
-      ReactDOM.render(
-        (
-          <StrictMode>
-            {element}
-          </StrictMode>
-        ), container,
-        cb,
-      );
-    });
-  }
-
   let root;
+
+  function render(element) {
+    if (createRoot) {
+      const r = createRoot(root);
+      act(() => {
+        r.render(element);
+      });
+    } else {
+      act(() => {
+        reactDomRender(
+          (
+            <StrictMode>
+              {element}
+            </StrictMode>
+          ), root,
+        );
+      });
+    }
+  }
 
   beforeEach(() => {
     root = document.createElement('div');
@@ -68,7 +76,7 @@ describe('react-stay-scrolled', () => {
 
   describe('general', () => {
     it('should scroll 30px to the right', () => {
-      render(<TestComponent />, root);
+      render(<TestComponent />);
 
       const container = root.firstChild;
 
@@ -98,7 +106,7 @@ describe('react-stay-scrolled', () => {
       const onDragStart = spy();
       const onDragEnd = spy();
 
-      render(<TestComponent onDragStart={onDragStart} onDragEnd={onDragEnd} />, root);
+      render(<TestComponent onDragStart={onDragStart} onDragEnd={onDragEnd} />);
 
       const container = root.firstChild;
 
@@ -131,7 +139,7 @@ describe('react-stay-scrolled', () => {
       const onDragStart = spy();
       const onDragEnd = spy();
 
-      render(<TestComponent onDragStart={onDragStart} onDragEnd={onDragEnd} />, root);
+      render(<TestComponent onDragStart={onDragStart} onDragEnd={onDragEnd} />);
 
       document.body.dispatchEvent(new MouseEvent('mousedown', {
         clientX: 50,

@@ -3,13 +3,19 @@
   "env": {
     "browser": true
   },
+  "parserOptions": {
+    "ecmaVersion": 2022
+  },
+  "globals": {
+    "globalThis": false
+  },
   "rules": {
     "max-len": ["error", { "code": 100, "ignoreComments": true }],
     "react/function-component-definition": [2, {"namedComponents":"arrow-function"}],
     "import/no-extraneous-dependencies": ["error", {
       "devDependencies": [
         "test/**",
-        "karma.conf.js",
+        "karma.conf.cjs",
         "rollup.config.js",
         "examples/rollup.config.js"
       ]
