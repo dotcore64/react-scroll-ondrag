@@ -39,7 +39,7 @@ describe('react-stay-scrolled', () => {
     return (
       // eslint-disable-next-line react/jsx-props-no-spreading
       <Container ref={containerRef} {...events}>
-        {[...Array(30).keys()].map((i) => <Box key={i} />)}
+        {[...Array.from({ length: 30 }).keys()].map((i) => <Box key={i} />)}
       </Container>
     );
   };
@@ -67,11 +67,11 @@ describe('react-stay-scrolled', () => {
 
   beforeEach(() => {
     root = document.createElement('div');
-    document.body.appendChild(root);
+    document.body.append(root);
   });
 
   afterEach(() => {
-    document.body.removeChild(root);
+    root.remove();
   });
 
   describe('general', () => {

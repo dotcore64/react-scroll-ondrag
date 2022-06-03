@@ -1,13 +1,11 @@
 {
-  "extends": ["airbnb", "plugin:react/jsx-runtime"],
+  "extends": ["airbnb", "plugin:react/jsx-runtime", "plugin:unicorn/recommended"],
   "env": {
     "browser": true
   },
   "parserOptions": {
-    "ecmaVersion": 2022
-  },
-  "globals": {
-    "globalThis": false
+    "ecmaVersion": "latest",
+    "sourceType": "module"
   },
   "rules": {
     "max-len": ["error", { "code": 100, "ignoreComments": true }],
@@ -18,7 +16,9 @@
         "karma.conf.cjs",
         "examples/rollup.config.js"
       ]
-    }]
+    }],
+    "unicorn/prevent-abbreviations": 0,
+    "unicorn/no-null": 0
   },
   "overrides": [
     {
