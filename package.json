@@ -2,24 +2,21 @@
   "name": "react-scroll-ondrag",
   "version": "2.1.0",
   "description": "React library for scrolling elements by dragging the mouse",
-  "main": "dist/index.cjs",
+  "main": "dist/index.js",
   "module": "dist/index.js",
   "type": "module",
   "engines": {
     "node": ">=14.0.0"
   },
   "exports": {
-    ".": {
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
-    },
+    ".": "./dist/index.js",
     "./package.json": "./package.json"
   },
   "scripts": {
     "lint": "eslint --cache .",
     "test": "karma start karma.conf.cjs --single-run --no-auto-watch",
     "tdd": "karma start karma.conf.cjs",
-    "build": "rollup -c",
+    "build": "babel src -s -d dist",
     "prepare": "npm run build"
   },
   "files": [
@@ -46,8 +43,8 @@
     "react": ">=16.8.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.17.10",
     "@babel/core": "^7.18.2",
-    "@babel/preset-env": "^7.18.2",
     "@babel/preset-react": "^7.17.12",
     "@rollup/plugin-alias": "^3.1.9",
     "@rollup/plugin-babel": "^5.3.1",
@@ -79,7 +76,6 @@
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "rollup": "^2.75.3",
-    "rollup-plugin-terser": "^7.0.2",
     "sinon": "^14.0.0",
     "sinon-chai": "^3.7.0",
     "styled-components": "^5.3.5"
