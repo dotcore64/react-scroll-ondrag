@@ -16,14 +16,13 @@
       "devDependencies": [
         "test/**",
         "karma.conf.cjs",
-        "rollup.config.js",
         "examples/rollup.config.js"
       ]
     }]
   },
   "overrides": [
     {
-      "files": ["test/{,**}/*.js?(x)"],
+      "files": ["test/{,**/}*.js?(x)"],
       "extends": ["plugin:mocha/recommended"],
       "plugins": ["mocha"],
       "env": {
