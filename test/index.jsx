@@ -1,6 +1,6 @@
 import { StrictMode, useRef } from 'react';
 import { render as reactDomRender } from 'react-dom';
-import { createRoot } from 'react-dom/client'; // eslint-disable-line import/no-unresolved
+import { createRoot } from 'react-dom/client';
 import { Simulate, act } from 'react-dom/test-utils';
 import { expect } from 'chai';
 import { spy } from 'sinon';

@@ -1,5 +1,6 @@
 {
-  "extends": ["airbnb", "plugin:react/jsx-runtime", "plugin:unicorn/recommended"],
+  "extends": ["airbnb", "plugin:react/jsx-runtime", "plugin:unicorn/recommended", "plugin:eslint-comments/recommended"],
+  "plugins": ["unicorn", "eslint-comments"],
   "env": {
     "browser": true
   },
@@ -18,7 +19,8 @@
       ]
     }],
     "unicorn/prevent-abbreviations": 0,
-    "unicorn/no-null": 0
+    "unicorn/no-null": 0,
+    "eslint-comments/no-unused-disable": "error"
   },
   "overrides": [
     {
