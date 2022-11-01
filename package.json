@@ -63,7 +63,7 @@
     "eslint-plugin-mocha": "^10.1.0",
     "eslint-plugin-react": "^7.31.10",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-unicorn": "^43.0.2",
+    "eslint-plugin-unicorn": "^44.0.2",
     "karma": "^6.4.1",
     "karma-chrome-launcher": "^3.1.1",
     "karma-coverage": "^2.2.0",
