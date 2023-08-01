@@ -1,5 +1,5 @@
 import { StrictMode, useRef } from 'react';
-import { render as reactDomRender } from 'react-dom';
+import { render as reactDomRender } from 'react-dom'; // eslint-disable-line react/no-deprecated
 import { createRoot } from 'react-dom/client';
 import { Simulate, act } from 'react-dom/test-utils';
 import { expect } from 'chai';
