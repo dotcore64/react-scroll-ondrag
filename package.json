@@ -43,8 +43,8 @@
     "react": ">=16.8.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.22.5",
-    "@babel/core": "^7.22.5",
+    "@babel/cli": "^7.22.9",
+    "@babel/core": "^7.22.9",
     "@babel/preset-react": "^7.22.5",
     "@rollup/plugin-alias": "^5.0.0",
     "@rollup/plugin-babel": "^6.0.3",
