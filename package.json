@@ -80,7 +80,7 @@
     "rollup": "^4.18.0",
     "sinon": "^18.0.0",
     "sinon-chai": "^3.7.0",
-    "styled-components": "^6.1.11"
+    "styled-components": "^6.1.12"
   },
   "dependencies": {
     "tiny-invariant": "^1.3.3"
