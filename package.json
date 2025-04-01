@@ -78,7 +78,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "rollup": "^4.38.0",
-    "sinon": "^19.0.2",
+    "sinon": "^20.0.0",
     "sinon-chai": "^3.7.0",
     "styled-components": "^6.1.16"
   },
