@@ -1,6 +1,6 @@
-import chai from 'chai';
+import { use } from 'chai';
 import sinon from 'sinon-chai';
 import dirty from 'dirty-chai';
 
-chai.use(sinon);
-chai.use(dirty);
+use(sinon);
+use(dirty);
