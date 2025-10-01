@@ -54,8 +54,8 @@
     "@rollup/plugin-replace": "^6.0.2",
     "babel-plugin-dev-expression": "^0.2.3",
     "babel-plugin-istanbul": "^7.0.1",
-    "chai": "^4.5.0",
-    "dirty-chai": "^2.0.1",
+    "chai": "^6.2.0",
+    "dirty-chai": "^3.0.0-rc.1",
     "eslint": "^8.57.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-plugin-import": "^2.32.0",
@@ -79,7 +79,7 @@
     "react-dom": "^19.1.0",
     "rollup": "^4.52.3",
     "sinon": "^21.0.0",
-    "sinon-chai": "^3.7.0",
+    "sinon-chai": "^4.0.1",
     "styled-components": "^6.1.19"
   },
   "dependencies": {
