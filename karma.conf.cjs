@@ -1,12 +1,11 @@
-/* eslint-disable global-require */
-
 // Karma configuration
 // Generated on Wed May 11 2016 23:26:57 GMT+0900 (JST)
 
+/* eslint-disable global-require */
 if (!process.env.CHROME_BIN) process.env.CHROME_BIN = require('puppeteer').executablePath();
-const IS_REACT_18 = parseInt(require('react').version.split('.')[0], 10) >= 18;
+const IS_REACT_18 = Number.parseInt(require('react').version.split('.')[0], 10) >= 18;
 
-module.exports = (config) => {
+module.exports = async (config) => {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
@@ -30,7 +29,7 @@ module.exports = (config) => {
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['spec', 'coverage'].concat(process.env.CI ? ['coveralls'] : []),
+    reporters: ['spec', 'coverage', ...(process.env.CI ? ['coveralls'] : [])],
 
     // web server port
     port: 9876,
@@ -68,7 +67,7 @@ module.exports = (config) => {
           exclude: 'node_modules/**',
           babelHelpers: 'bundled',
         }),
-        !IS_REACT_18 && require('@rollup/plugin-alias')({
+        !IS_REACT_18 && (await import('@rollup/plugin-alias')).default({
           entries: { 'react-dom/client': 'test/react-dom-client-polyfill.js' },
         }),
         require('@rollup/plugin-node-resolve').default({
@@ -81,6 +80,7 @@ module.exports = (config) => {
         sourcemap: 'inline',
       },
     },
+    /* eslint-enable global-require */
 
     coverageReporter: {
       dir: 'coverage/',
