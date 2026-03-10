@@ -43,8 +43,8 @@
     "react": ">=16.8.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.28.3",
-    "@babel/core": "^7.28.5",
+    "@babel/cli": "^7.28.6",
+    "@babel/core": "^7.29.0",
     "@babel/preset-react": "^7.28.5",
     "@eslint-community/eslint-plugin-eslint-comments": "^4.5.0",
     "@rollup/plugin-alias": "^6.0.0",
