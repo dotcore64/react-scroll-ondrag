@@ -77,7 +77,7 @@
     "puppeteer": "^24.38.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "rollup": "^4.59.0",
+    "rollup": "^4.60.3",
     "sinon": "^22.0.0",
     "sinon-chai": "^4.0.1",
     "styled-components": "^6.3.11"
