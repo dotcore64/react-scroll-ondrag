@@ -1,9 +1,9 @@
 // Karma configuration
 // Generated on Wed May 11 2016 23:26:57 GMT+0900 (JST)
 
-/* eslint-disable global-require */
+ 
 if (!process.env.CHROME_BIN) process.env.CHROME_BIN = require('puppeteer').executablePath();
-const IS_REACT_18 = Number.parseInt(require('react').version.split('.')[0], 10) >= 18;
+const IS_REACT_18 = Number.parseInt(require('react').version.split('.', 1)[0], 10) >= 18;
 
 module.exports = async (config) => {
   config.set({
@@ -67,6 +67,7 @@ module.exports = async (config) => {
           exclude: 'node_modules/**',
           babelHelpers: 'bundled',
         }),
+        // eslint-disable-next-line import/no-unresolved
         !IS_REACT_18 && (await import('@rollup/plugin-alias')).default({
           entries: { 'react-dom/client': 'test/react-dom-client-polyfill.js' },
         }),
@@ -80,7 +81,7 @@ module.exports = async (config) => {
         sourcemap: 'inline',
       },
     },
-    /* eslint-enable global-require */
+     
 
     coverageReporter: {
       dir: 'coverage/',

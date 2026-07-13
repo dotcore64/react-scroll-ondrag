@@ -4,7 +4,7 @@ import { createRoot } from 'react-dom/client';
 import { Simulate, act } from 'react-dom/test-utils';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import styled from 'styled-components';
+import { styled } from 'styled-components';
 
 // https://github.com/import-js/eslint-plugin-import/issues/1649
 // eslint-disable-next-line import/no-unresolved
@@ -37,7 +37,7 @@ describe('react-stay-scrolled', () => {
     const { events } = useScrollOnDrag(containerRef, props);
 
     return (
-      // eslint-disable-next-line react/jsx-props-no-spreading
+       
       <Container ref={containerRef} {...events}>
         {[...Array.from({ length: 30 }).keys()].map((i) => <Box key={i} />)}
       </Container>
@@ -87,12 +87,12 @@ describe('react-stay-scrolled', () => {
         clientY: 100,
       });
 
-      window.dispatchEvent(new MouseEvent('mousemove', {
+      globalThis.dispatchEvent(new MouseEvent('mousemove', {
         clientX: 50,
         clientY: 100,
       }));
 
-      window.dispatchEvent(new MouseEvent('mouseup', {
+      globalThis.dispatchEvent(new MouseEvent('mouseup', {
         clientX: 50,
         clientY: 100,
       }));
@@ -118,7 +118,7 @@ describe('react-stay-scrolled', () => {
       expect(onDragEnd).to.not.have.been.called();
       expect(onDragStart).to.not.have.been.called();
 
-      window.dispatchEvent(new MouseEvent('mousemove', {
+      globalThis.dispatchEvent(new MouseEvent('mousemove', {
         clientX: 50,
         clientY: 100,
       }));
@@ -126,7 +126,7 @@ describe('react-stay-scrolled', () => {
       expect(onDragEnd).to.not.have.been.called();
       expect(onDragStart).to.have.been.calledOnce();
 
-      window.dispatchEvent(new MouseEvent('mouseup', {
+      globalThis.dispatchEvent(new MouseEvent('mouseup', {
         clientX: 50,
         clientY: 100,
       }));
@@ -149,7 +149,7 @@ describe('react-stay-scrolled', () => {
       expect(onDragEnd).to.not.have.been.called();
       expect(onDragStart).to.not.have.been.called();
 
-      window.dispatchEvent(new MouseEvent('mousemove', {
+      globalThis.dispatchEvent(new MouseEvent('mousemove', {
         clientX: 50,
         clientY: 500,
       }));
@@ -157,7 +157,7 @@ describe('react-stay-scrolled', () => {
       expect(onDragEnd).to.not.have.been.called();
       expect(onDragStart).to.not.have.been.called();
 
-      window.dispatchEvent(new MouseEvent('mouseup', {
+      globalThis.dispatchEvent(new MouseEvent('mouseup', {
         clientX: 50,
         clientY: 500,
       }));

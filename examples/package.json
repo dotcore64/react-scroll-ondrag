@@ -1,8 +1,9 @@
 {
-  "name": "react-stay-scrolled-examples",
+  "name": "react-scroll-ondrag-examples",
   "version": "0.0.1",
-  "description": "Live examples of react-stay-scrolled in action",
+  "description": "Live examples of react-scroll-ondrag in action",
   "main": "src/main.jsx",
+  "private": true,
   "scripts": {
     "start": "rollup -c",
     "develop": "rollup --watch -c"

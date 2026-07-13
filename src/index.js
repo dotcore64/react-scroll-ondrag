@@ -9,10 +9,10 @@ export default (domRef, {
   onDragEnd = () => {},
   runScroll = ({ dx, dy }) => {
     const offsetX = Math.min(maxHorizontalScroll(domRef.current), domRef.current.scrollLeft + dx);
-    domRef.current.scrollLeft = offsetX; // eslint-disable-line no-param-reassign
+    domRef.current.scrollLeft = offsetX;  
 
     const offsetY = Math.min(maxVerticalScroll(domRef.current), domRef.current.scrollTop + dy);
-    domRef.current.scrollTop = offsetY; // eslint-disable-line no-param-reassign
+    domRef.current.scrollTop = offsetY;  
   },
 } = {}) => {
   const internalState = useRef({
@@ -66,12 +66,12 @@ export default (domRef, {
   };
 
   useEffect(() => {
-    window.addEventListener('mouseup', onMouseUp);
-    window.addEventListener('mousemove', onMouseMove);
+    globalThis.addEventListener('mouseup', onMouseUp);
+    globalThis.addEventListener('mousemove', onMouseMove);
 
     return () => {
-      window.removeEventListener('mouseup', onMouseUp);
-      window.removeEventListener('mousemove', onMouseMove);
+      globalThis.removeEventListener('mouseup', onMouseUp);
+      globalThis.removeEventListener('mousemove', onMouseMove);
     };
   }, []);
 
