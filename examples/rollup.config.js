@@ -1,41 +1,38 @@
-import { babel } from '@rollup/plugin-babel';
-import resolve from '@rollup/plugin-node-resolve';
-import commonjs from '@rollup/plugin-commonjs';
-import replace from '@rollup/plugin-replace';
-import serve from 'rollup-plugin-serve';
-import livereload from 'rollup-plugin-livereload';
+import { babel } from "@rollup/plugin-babel";
+import resolve from "@rollup/plugin-node-resolve";
+import commonjs from "@rollup/plugin-commonjs";
+import replace from "@rollup/plugin-replace";
+import serve from "rollup-plugin-serve";
+import livereload from "rollup-plugin-livereload";
 
-const env = process.env.NODE_ENV || 'development';
+const env = process.env.NODE_ENV || "development";
 
 export default {
-  input: './src/main.jsx',
+  input: "./src/main.jsx",
   plugins: [
     replace({
-      'process.env.NODE_ENV': JSON.stringify(env),
+      "process.env.NODE_ENV": JSON.stringify(env),
     }),
     babel({
-      exclude: ['node_modules/**', '../node_modules/**'],
+      exclude: ["node_modules/**", "../node_modules/**"],
       babelrc: false,
-      presets: [
-        '@babel/env',
-        ['@babel/react', { runtime: 'automatic' }],
-      ],
-      babelHelpers: 'bundled',
+      presets: ["@babel/env", ["@babel/react", { runtime: "automatic" }]],
+      babelHelpers: "bundled",
     }),
     resolve({
-      extensions: ['.js', '.jsx'],
+      extensions: [".js", ".jsx"],
     }),
-    commonjs({ include: ['node_modules/**', '../node_modules/**'] }),
+    commonjs({ include: ["node_modules/**", "../node_modules/**"] }),
     serve({
-      contentBase: 'public',
+      contentBase: "public",
       port: process.env.PORT || 3000,
     }),
-    livereload('public'),
+    livereload("public"),
   ].filter(Boolean),
   output: {
-    file: './public/client.js',
-    format: 'iife',
-    name: 'ReactScrollOnDragExamples',
+    file: "./public/client.js",
+    format: "iife",
+    name: "ReactScrollOnDragExamples",
     sourcemap: true,
   },
 };

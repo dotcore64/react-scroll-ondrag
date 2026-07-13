@@ -1,20 +1,29 @@
-import { useEffect, useRef, useCallback } from 'react';
-import invariant from 'tiny-invariant';
+import { useEffect, useRef, useCallback } from "react";
+import invariant from "tiny-invariant";
 
 const maxHorizontalScroll = (dom) => dom.scrollWidth - dom.clientWidth;
 const maxVerticalScroll = (dom) => dom.scrollHeight - dom.clientHeight;
 
-export default (domRef, {
-  onDragStart = () => {},
-  onDragEnd = () => {},
-  runScroll = ({ dx, dy }) => {
-    const offsetX = Math.min(maxHorizontalScroll(domRef.current), domRef.current.scrollLeft + dx);
-    domRef.current.scrollLeft = offsetX;  
+export default (
+  domRef,
+  {
+    onDragStart = () => {},
+    onDragEnd = () => {},
+    runScroll = ({ dx, dy }) => {
+      const offsetX = Math.min(
+        maxHorizontalScroll(domRef.current),
+        domRef.current.scrollLeft + dx,
+      );
+      domRef.current.scrollLeft = offsetX;
 
-    const offsetY = Math.min(maxVerticalScroll(domRef.current), domRef.current.scrollTop + dy);
-    domRef.current.scrollTop = offsetY;  
-  },
-} = {}) => {
+      const offsetY = Math.min(
+        maxVerticalScroll(domRef.current),
+        domRef.current.scrollTop + dy,
+      );
+      domRef.current.scrollTop = offsetY;
+    },
+  } = {},
+) => {
   const internalState = useRef({
     lastMouseX: null,
     lastMouseY: null,
@@ -22,12 +31,18 @@ export default (domRef, {
     isScrolling: false,
   });
 
-  const scroll = useCallback(({ dx, dy }) => {
-    invariant(domRef.current !== null, `Trying to scroll to the bottom, but no element was found.
-      Did you call this scrollBottom before the component with this hook finished mounting?`);
+  const scroll = useCallback(
+    ({ dx, dy }) => {
+      invariant(
+        domRef.current !== null,
+        `Trying to scroll to the bottom, but no element was found.
+      Did you call this scrollBottom before the component with this hook finished mounting?`,
+      );
 
-    runScroll({ dx, dy });
-  }, [runScroll]);
+      runScroll({ dx, dy });
+    },
+    [runScroll],
+  );
 
   const onMouseDown = useCallback((e) => {
     internalState.current.isMouseDown = true;
@@ -66,12 +81,12 @@ export default (domRef, {
   };
 
   useEffect(() => {
-    globalThis.addEventListener('mouseup', onMouseUp);
-    globalThis.addEventListener('mousemove', onMouseMove);
+    globalThis.addEventListener("mouseup", onMouseUp);
+    globalThis.addEventListener("mousemove", onMouseMove);
 
     return () => {
-      globalThis.removeEventListener('mouseup', onMouseUp);
-      globalThis.removeEventListener('mousemove', onMouseMove);
+      globalThis.removeEventListener("mouseup", onMouseUp);
+      globalThis.removeEventListener("mousemove", onMouseMove);
     };
   }, []);
 
