@@ -6,6 +6,7 @@ import unicorn from "eslint-plugin-unicorn";
 import react from "eslint-plugin-react";
 import hooks from "eslint-plugin-react-hooks";
 import comments from "@eslint-community/eslint-plugin-eslint-comments/configs";
+import prettier from "eslint-plugin-prettier/recommended";
 import globals from "globals";
 
 const testFiles = ["test/{,**/}*.js{,x}"];
@@ -16,21 +17,22 @@ export default [
   comments.recommended,
   unicorn.configs.recommended,
   imprt.flatConfigs.recommended,
+  prettier,
   {
     languageOptions: {
       sourceType: "module",
       ecmaVersion: "latest",
       globals: {
         ...globals.node,
-        ...globals.browser
-      }
+        ...globals.browser,
+      },
     },
     rules: {
       "unicorn/no-null": 0,
       "unicorn/prevent-abbreviations": 0,
       "unicorn/no-anonymous-default-export": 0,
       "unicorn/no-await-expression-member": 0,
-      "@eslint-community/eslint-comments/no-unused-disable": "error"
+      "@eslint-community/eslint-comments/no-unused-disable": "error",
     },
   },
   {
@@ -48,7 +50,7 @@ export default [
     files: ["**/*.jsx"],
   },
   {
-    ...react.configs.flat['jsx-runtime'],
+    ...react.configs.flat["jsx-runtime"],
     files: ["**/*.jsx"],
   },
   {
@@ -56,13 +58,18 @@ export default [
     files: ["**/*.jsx"],
   },
   {
-    ignores: ["coverage/", "node_modules/", "dist/", "examples/public/client.js"],
+    ignores: [
+      "coverage/",
+      "node_modules/",
+      "dist/",
+      "examples/public/client.js",
+    ],
   },
   {
     settings: {
-      "react": {
-        "version": "detect"
-      }
+      react: {
+        version: "detect",
+      },
     },
-  }
+  },
 ];

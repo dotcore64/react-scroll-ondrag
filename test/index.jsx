@@ -1,14 +1,14 @@
-import { StrictMode, useRef } from 'react';
-import { render as reactDomRender } from 'react-dom'; // eslint-disable-line react/no-deprecated
-import { createRoot } from 'react-dom/client';
-import { Simulate, act } from 'react-dom/test-utils';
-import { expect } from 'chai';
-import { spy } from 'sinon';
-import { styled } from 'styled-components';
+import { StrictMode, useRef } from "react";
+import { render as reactDomRender } from "react-dom"; // eslint-disable-line react/no-deprecated
+import { createRoot } from "react-dom/client";
+import { Simulate, act } from "react-dom/test-utils";
+import { expect } from "chai";
+import { spy } from "sinon";
+import { styled } from "styled-components";
 
 // https://github.com/import-js/eslint-plugin-import/issues/1649
 // eslint-disable-next-line import/no-unresolved
-import useScrollOnDrag from 'react-scroll-ondrag';
+import useScrollOnDrag from "react-scroll-ondrag";
 
 globalThis.IS_REACT_ACT_ENVIRONMENT = true;
 
@@ -28,18 +28,19 @@ const Box = styled.div`
   height: 100%;
   margin: 5px 10px;
   width: 250px;
-  background-color: #F00;
+  background-color: #f00;
 `;
 
-describe('react-stay-scrolled', () => {
+describe("react-stay-scrolled", () => {
   const TestComponent = (props) => {
     const containerRef = useRef(null);
     const { events } = useScrollOnDrag(containerRef, props);
 
     return (
-       
       <Container ref={containerRef} {...events}>
-        {[...Array.from({ length: 30 }).keys()].map((i) => <Box key={i} />)}
+        {[...Array.from({ length: 30 }).keys()].map((i) => (
+          <Box key={i} />
+        ))}
       </Container>
     );
   };
@@ -54,19 +55,13 @@ describe('react-stay-scrolled', () => {
       });
     } else {
       act(() => {
-        reactDomRender(
-          (
-            <StrictMode>
-              {element}
-            </StrictMode>
-          ), root,
-        );
+        reactDomRender(<StrictMode>{element}</StrictMode>, root);
       });
     }
   }
 
   beforeEach(() => {
-    root = document.createElement('div');
+    root = document.createElement("div");
     document.body.append(root);
   });
 
@@ -74,8 +69,8 @@ describe('react-stay-scrolled', () => {
     root.remove();
   });
 
-  describe('general', () => {
-    it('should scroll 30px to the right', () => {
+  describe("general", () => {
+    it("should scroll 30px to the right", () => {
       render(<TestComponent />);
 
       const container = root.firstChild;
@@ -87,22 +82,26 @@ describe('react-stay-scrolled', () => {
         clientY: 100,
       });
 
-      globalThis.dispatchEvent(new MouseEvent('mousemove', {
-        clientX: 50,
-        clientY: 100,
-      }));
+      globalThis.dispatchEvent(
+        new MouseEvent("mousemove", {
+          clientX: 50,
+          clientY: 100,
+        }),
+      );
 
-      globalThis.dispatchEvent(new MouseEvent('mouseup', {
-        clientX: 50,
-        clientY: 100,
-      }));
+      globalThis.dispatchEvent(
+        new MouseEvent("mouseup", {
+          clientX: 50,
+          clientY: 100,
+        }),
+      );
 
       expect(container.scrollLeft).to.equal(50);
     });
   });
 
-  describe('event handlers', () => {
-    it('should call onDragStart and onDragEnd appropriately', () => {
+  describe("event handlers", () => {
+    it("should call onDragStart and onDragEnd appropriately", () => {
       const onDragStart = spy();
       const onDragEnd = spy();
 
@@ -118,49 +117,59 @@ describe('react-stay-scrolled', () => {
       expect(onDragEnd).to.not.have.been.called();
       expect(onDragStart).to.not.have.been.called();
 
-      globalThis.dispatchEvent(new MouseEvent('mousemove', {
-        clientX: 50,
-        clientY: 100,
-      }));
+      globalThis.dispatchEvent(
+        new MouseEvent("mousemove", {
+          clientX: 50,
+          clientY: 100,
+        }),
+      );
 
       expect(onDragEnd).to.not.have.been.called();
       expect(onDragStart).to.have.been.calledOnce();
 
-      globalThis.dispatchEvent(new MouseEvent('mouseup', {
-        clientX: 50,
-        clientY: 100,
-      }));
+      globalThis.dispatchEvent(
+        new MouseEvent("mouseup", {
+          clientX: 50,
+          clientY: 100,
+        }),
+      );
 
       expect(onDragStart).to.have.been.calledOnce();
       expect(onDragEnd).to.have.been.calledOnce();
     });
 
-    it('should not call onDragStart or onDragEnd when clicking outside the component', () => {
+    it("should not call onDragStart or onDragEnd when clicking outside the component", () => {
       const onDragStart = spy();
       const onDragEnd = spy();
 
       render(<TestComponent onDragStart={onDragStart} onDragEnd={onDragEnd} />);
 
-      document.body.dispatchEvent(new MouseEvent('mousedown', {
-        clientX: 50,
-        clientY: 600,
-      }));
+      document.body.dispatchEvent(
+        new MouseEvent("mousedown", {
+          clientX: 50,
+          clientY: 600,
+        }),
+      );
 
       expect(onDragEnd).to.not.have.been.called();
       expect(onDragStart).to.not.have.been.called();
 
-      globalThis.dispatchEvent(new MouseEvent('mousemove', {
-        clientX: 50,
-        clientY: 500,
-      }));
+      globalThis.dispatchEvent(
+        new MouseEvent("mousemove", {
+          clientX: 50,
+          clientY: 500,
+        }),
+      );
 
       expect(onDragEnd).to.not.have.been.called();
       expect(onDragStart).to.not.have.been.called();
 
-      globalThis.dispatchEvent(new MouseEvent('mouseup', {
-        clientX: 50,
-        clientY: 500,
-      }));
+      globalThis.dispatchEvent(
+        new MouseEvent("mouseup", {
+          clientX: 50,
+          clientY: 500,
+        }),
+      );
 
       expect(onDragStart).to.not.have.been.called();
       expect(onDragEnd).to.not.have.been.called();
