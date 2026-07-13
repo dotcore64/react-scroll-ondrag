@@ -1,6 +1,6 @@
-import { useRef } from 'react';
+import { useRef, useCallback } from 'react';
 import PropTypes from 'prop-types';
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import useScrollOnDrag from 'react-scroll-ondrag';
 import styled from 'styled-components';
 
@@ -25,13 +25,17 @@ const Box = styled.div`
 
 const ScrollableBox = ({ runScroll }) => {
   const containerRef = useRef(null);
+  const runScrollWithRef = useCallback(
+    (args) => runScroll(containerRef)(args),
+    [runScroll],
+  );
   const { events } = useScrollOnDrag(containerRef, {
-    runScroll: runScroll && runScroll(containerRef),
+    runScroll: runScroll ? runScrollWithRef : undefined,
   });
 
   return (
     <Container {...events} ref={containerRef}>
-      {[...Array(30).keys()].map(i => <Box key={i} />)}
+      {[...Array.from({length: 30}).keys()].map(i => <Box key={i} />)}
     </Container>
   );
 };
@@ -50,13 +54,10 @@ const App = () => (
     <ScrollableBox />
     <div>Scrolls only x direction at 5 times the normal speed:</div>
     <ScrollableBox runScroll={containerRef => ({ dx }) => {
-      containerRef.current.scrollLeft += dx * 5; // eslint-disable-line no-param-reassign
+      containerRef.current.scrollLeft += dx * 5;  
     }}
     />
   </>
 );
 
-render(
-  <App />,
-  document.getElementById('demo'),
-);
+createRoot(document.querySelector('#demo')).render(<App />);
