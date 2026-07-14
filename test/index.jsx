@@ -1,7 +1,7 @@
-import { StrictMode, useRef } from "react";
+import { StrictMode, useRef, act as reactAct } from "react";
 import { render as reactDomRender } from "react-dom"; // eslint-disable-line react/no-deprecated
 import { createRoot } from "react-dom/client";
-import { Simulate, act } from "react-dom/test-utils";
+import { act as testUtilsAct } from "react-dom/test-utils";
 import { expect } from "chai";
 import { spy } from "sinon";
 import { styled } from "styled-components";
@@ -11,6 +11,10 @@ import { styled } from "styled-components";
 import useScrollOnDrag from "react-scroll-ondrag";
 
 globalThis.IS_REACT_ACT_ENVIRONMENT = true;
+
+// react's own act was only added in React 19; react-dom/test-utils's act still
+// works on older versions but is deprecated in favor of the one from react
+const act = reactAct ?? testUtilsAct;
 
 const Container = styled.div`
   display: inline-block;
@@ -77,10 +81,13 @@ describe("react-stay-scrolled", () => {
 
       expect(container.scrollLeft).to.equal(0);
 
-      Simulate.mouseDown(container, {
-        clientX: 100,
-        clientY: 100,
-      });
+      container.dispatchEvent(
+        new MouseEvent("mousedown", {
+          clientX: 100,
+          clientY: 100,
+          bubbles: true,
+        }),
+      );
 
       globalThis.dispatchEvent(
         new MouseEvent("mousemove", {
@@ -109,10 +116,13 @@ describe("react-stay-scrolled", () => {
 
       const container = root.firstChild;
 
-      Simulate.mouseDown(container, {
-        clientX: 100,
-        clientY: 100,
-      });
+      container.dispatchEvent(
+        new MouseEvent("mousedown", {
+          clientX: 100,
+          clientY: 100,
+          bubbles: true,
+        }),
+      );
 
       expect(onDragEnd).to.not.have.been.called();
       expect(onDragStart).to.not.have.been.called();
